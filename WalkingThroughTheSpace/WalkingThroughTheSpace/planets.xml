@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<planets>
+	<planet mass="3.3011E23" rad="2439700" temperature="340"
+	 aphelion="69816900000" perihelion="46001200000" master="Sun">Mercury</planet>
+	<planet mass="4.8675E24" rad="6051800" temperature="737"
+	 aphelion="108939000000" perihelion="107477000000" master="Sun">Venus</planet>
+	<planet mass="5.9723E24" rad="6378100" temperature="288"
+	 aphelion="152100000000" perihelion="147095000000" master="Sun">Earth</planet>
+	<planet mass="6.4171E23" rad="3396200" temperature="210"
+	 aphelion="249200000000" perihelion="206700000000" master="Sun">Mars</planet>
+	<planet mass="1.8982E27" rad="71492000" temperature="165"
+	 aphelion="816620000000" perihelion="740520000000" master="Sun">Jupiter</planet>
+	<planet mass="5.6834E26" rad="60268000" temperature="134"
+	 aphelion="3029000000000" perihelion="1352550000000" master="Sun">Saturn</planet> //rad*2
+	<planet mass="8.6810E25" rad="25559000" temperature="76"
+	 aphelion="3008000000000" perihelion="2742000000000" master="Sun">Uranus</planet>
+	<planet mass="1.0241E26" rad="24764000" temperature="72"
+	 aphelion="4540000000000" perihelion="4460000000000" master="Sun">Neptune</planet>
+	<planet mass="1.3030E22" rad="1188300" temperature="44"
+	 aphelion="7375930000000" perihelion="4436820000000" master="Sun">Pluto</planet>
+	<planet mass="7.3420E22" rad="1738100" temperature="220"
+	 aphelion="405400000" perihelion="362600000" master="Earth">Moon</planet>
+	<planet mass="1.9885E30" rad="696342000" temperature="6500"
+	 aphelion="0" perihelion="0" master="null">Sun</planet>
+</planets>
