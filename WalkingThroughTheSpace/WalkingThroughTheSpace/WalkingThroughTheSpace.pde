@@ -56,7 +56,7 @@ void keyboard()
     zoom *= 1.05;
     viewX *= 1.05;
     viewY *= 1.05;
-  } 
+  }
   if(key == 'x')
   {
     zoom *= 0.95;

@@ -6,8 +6,8 @@ void setup() {
     fullScreen();
     frameRate(60);
     noCursor();
-    
-    
+
+
     x0 = width / 2;
     y0 = height / 4 * 2;
     x1 = width / 2;
@@ -25,15 +25,15 @@ void setup() {
 void draw() {
     vx1 = mouseX - pmouseX;
     vy1 = mouseY - pmouseY;
-    
+
     x0 += vx0;
     y0 += vy0;
     x1 = mouseX;
     y1 = mouseY;
     x2 += vx2;
     y2 += vy2;
-    
-    
+
+
     if(x0 < 25) {
         x0 = 25;
         vx0 = -vx0;
@@ -72,7 +72,7 @@ void draw() {
         y2 = height - 26;
         vy2 = -vy0;
     }
-    
+
     if(abs(x1 - x0) < 50 && abs(y1 - y0) < 50) {
         float speed = sqrt(vx0 * vx0 + vy0 * vy0);
         vx0 = x0 - x1;
@@ -93,10 +93,10 @@ void draw() {
         vx0 += vx2;
         vy0 += vy2;
     }
-    
-    
+
+
     background(0);
-    
+
     stroke(255);
     strokeWeight(5);
     fill(0);
@@ -108,7 +108,7 @@ void draw() {
     fill(0, 0, 255);
     circle(x2, y2, 50);
     noFill();
-    
+
     strokeWeight(1);
     rectMode(CORNERS);
     stroke(255, 0, 0);

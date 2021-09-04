@@ -12,7 +12,6 @@ float fr = 0, fg = 0, fb = 0;
 float zoom = 1, size = 1;
 
 class RainDrop {
-  
   String author = "MalDenOl21112003";
   private float x, y, z;
   private float thick, len;
@@ -21,7 +20,7 @@ class RainDrop {
   final private float depth = 0.9;
   private float px, py;
   private float size = 1;
-  
+
   RainDrop(float x, float z, float thick, float len) {
     this.x = x;
     this.y = -len;
@@ -29,13 +28,13 @@ class RainDrop {
     this.thick = thick;
     this.len = len;
   };
-  
+
   void go() {
     px = x;
     py = y;
     y += speed * pow(depth, z);
   };
-  
+
   void go(float speedX, float speedY, float speedZ) {
     px = x;
     py = y;
@@ -43,17 +42,17 @@ class RainDrop {
     y += speed * speedY * pow(depth, z);
     z += speed * speedZ * pow(depth, z);
   };
-  
+
   Integer show(Integer form) {
     stroke(r, g, b);
     fill(r, g, b);
-    
+
     float wdth = thick * pow(depth, z) * size;
     float hght = len * pow(depth, z) * size;
     float mid = (wdth + hght) / 2;
-    
+
     float vectl, vectx, vecty;
-    
+
     switch(form)
     {
       case 0:
@@ -110,33 +109,33 @@ class RainDrop {
     noFill();
     return form;
   };
-  
+
   void setColor(float r, float g, float b) {
     this.r = r;
     this.g = g;
     this.b = b;
   };
-  
+
   void setSize(float size) {
     this.size = size;
   };
-  
+
   float getX() {
     return x;
   };
-  
+
   float getY() {
     return y;
   };
-  
+
   float getZ() {
     return z;
   };
-  
+
   float getSpeed() {
     return speed;
   };
-  
+
   float getSize() {
     return size;
   };
@@ -148,14 +147,14 @@ void setup() {
   fullScreen();
   noCursor();
   frameRate(fps);
-  
+
   conc = width * height / 10000;
 };
 
 void draw() {
   scale(zoom);
   custom();
-  
+
   for(; count < conc / zoom; count++)
   {
     RainDrop drop = new RainDrop(random(0, (width - 1) / zoom), random(-maxZ / 10, maxZ), random(minW, maxW), random(minH, maxH));
@@ -186,7 +185,7 @@ void draw() {
     drop.setSize(size);
     drops.add(drop);
   };
-  
+
   for(Iterator<RainDrop> iter = drops.iterator(); iter.hasNext();)
   {
     RainDrop drop = iter.next();
@@ -238,7 +237,7 @@ void mouseReleased() {
 
 void custom() {
   float a, b, c;
-  
+
   switch(fone)
   {
     case 0:
@@ -271,7 +270,7 @@ void custom() {
       fone = 0;
       break;
   };
-  
+
   switch(rdColor)
   {
     case 0:
@@ -327,7 +326,7 @@ void custom() {
 
 void tick() {
   float a, b, c, speed;
-  
+
   for(RainDrop drop : drops)
     switch(mode)
     {

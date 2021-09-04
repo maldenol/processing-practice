@@ -14,25 +14,25 @@ class Ball
   private float diam = width * height / 10000;
   private PVector vector = new PVector(0, 0);
   private int duplicates = 5;
-  
+
   Ball(float x, float y)
   {
     this.x = x;
     this.y = y;
   }
-  
+
   void setVector(float x, float y, float speed)
   {
     this.vector = new PVector(x, y);
     this.vector.normalize();
     this.vector.mult(speed);
   }
-  
+
   void setVector(float x, float y)
   {
     this.vector = new PVector(x, y);
   }
-  
+
   void reflect()
   {
     if(this.x < this.diam / 2)
@@ -56,7 +56,7 @@ class Ball
       this.vector.y = -this.vector.y;
     }
   }
-  
+
   void gravity(float dstX, float dstY)
   {
     PVector temp = new PVector(dstX - this.x, dstY - this.y);
@@ -64,7 +64,7 @@ class Ball
     temp.mult(this.grav);
     this.vector.add(temp);
   }
-  
+
   void gravity(float dstX, float dstY, int dependence, float gravK)
   {
     PVector temp = new PVector(dstX - this.x, dstY - this.y);
@@ -73,14 +73,14 @@ class Ball
     temp.div(pow(this.distance(dstX, dstY), dependence));
     this.vector.add(temp);
   }
-  
+
   void go()
   {
     this.reflect();
     x += this.vector.x;
     y += this.vector.y;
   }
-  
+
   void show()
   {
     strokeWeight(3);
@@ -89,7 +89,7 @@ class Ball
     ellipse(this.x, this.y, diam, diam);
     noFill();
   }
-  
+
   void duplicate(ArrayList<Ball> balls)
   {
     for(int i = 0; i < duplicates; i++)
@@ -99,39 +99,39 @@ class Ball
       balls.add(temp);
     }
   }
-  
+
   void delete(ArrayList<Ball> balls)
   {
     Iterator<Ball> iter = balls.iterator();
     while(balls.size() > 1 && iter.hasNext())
       iter.remove();
   }
-  
+
   void setGrav(float grav)
   {
     this.grav = grav;
   }
-  
+
   void setDiam(float diam)
   {
     this.diam = diam;
   }
-  
+
   float getX()
   {
     return this.x;
   }
-  
+
   float getY()
   {
     return this.y;
   }
-  
+
   float getDiam()
   {
     return this.diam;
   }
-  
+
   float distance(float x, float y)
   {
     return sqrt(pow(x - this.x, 2) + pow(y - this.y, 2));
@@ -145,7 +145,7 @@ void setup()
   fullScreen();
   noCursor();
   frameRate(fps);
-  
+
   balls.add(new Ball(width / 2, height / 2));
   balls.get(0).setDiam(width * height / 10000);
 }
@@ -206,7 +206,7 @@ void logic(Ball ball)
       tailMode = 0;
       break;
   }
-  
+
   if(update == true)
     switch(fone)
     {
@@ -232,7 +232,7 @@ void logic(Ball ball)
         fone = 0;
         break;
     }
-  
+
   switch(gravMode)
   {
     case 0:
@@ -268,7 +268,7 @@ void logic(Ball ball)
       gravMode = 0;
       break;
   }
-    
-    ball.go();
-    ball.show();
+
+  ball.go();
+  ball.show();
 }

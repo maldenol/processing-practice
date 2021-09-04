@@ -1,5 +1,4 @@
-
-//by MalDenOl
+// by MalDenOl
 
 final float[][] matrix = new float[][]{
   {0, 0, 0, 0.16, 0, 0, 0.01, 0, 0},
@@ -10,10 +9,10 @@ final float[][] matrix = new float[][]{
 
 /*
   Fern Barnsley
-  
+
   f(x) = ax + by + e
   f(y) = cx + dy + f
-  
+
   ---------------------------------------------------------
   | i      0      1      2      3      4      5      6    |
   |-------------------------------------------------------|
@@ -37,13 +36,13 @@ void setup()
 {
   fullScreen(JAVA2D);
   noCursor();
-  
+
   background(0);
-  
+
   border = min(width, height);
-  
+
   screen = get();
-  
+
   float percent = 0;
   for(float[] line : matrix)
   {
@@ -58,14 +57,14 @@ void draw()
   image(screen, 0, 0);
   translate(width/2, height/50);
   scale(0.9);
-  
+
   for(int i = 0; i < 1000; i++)
   {
     int rand = (int)random(100);
-    
+
     float xt = x;
     float yt = y;
-    
+
     for(float[] line : matrix)
       if(rand >= line[7]*100 && rand < line[8]*100)
       {
@@ -73,17 +72,17 @@ void draw()
         y = line[2]*xp + line[3]*yp + line[5];
         break;
       }
-    
+
     xp = xt;
     yp = yt;
-    
+
     float r = noise(x*smooth, y*smooth) * rm;
     float g = noise(x*smooth, y*smooth) * gm;
     float b = noise(x*smooth, y*smooth) * bm;
     stroke(r, g, b);
     point(x*border/10, y*border/10);
   }
-  
+
   screen = get();
 };
 
@@ -91,7 +90,7 @@ void mouseReleased()
 {
   int mode = (int)map(mouseX, -1, width, 1, 5);
   float val = map(mouseY, 0, height - 1, 255, 0);
-  
+
   switch(mode)
   {
     case 1:
@@ -107,7 +106,7 @@ void mouseReleased()
       smooth = map(val, 0, 255, 0, 10);
       break;
   }
-  
+
   setup();
 };
 
@@ -115,7 +114,7 @@ void mouseDragged()
 {
   int mode = (int)map(mouseX, -1, width, 1, 5);
   float col = map(mouseY, 0, height - 1, 255, 0);
-  
+
   switch(mode)
   {
     case 1:
@@ -135,7 +134,7 @@ void mouseDragged()
       fill(col);
       break;
   }
-  
+
   float x = mouseX - width/2, y = mouseY - height/50;
   ellipse(x, y, 15, 15);
 };

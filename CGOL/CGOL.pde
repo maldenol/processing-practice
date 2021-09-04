@@ -6,7 +6,7 @@ int sx, sy;
 
 boolean cellState(int x, int y) {  
     int n = 0;
-    
+
     if(buf[(x + 1) % sx][y])
         n++;
     if(buf[(x + 1) % sx][(y + 1) % sy])
@@ -23,7 +23,7 @@ boolean cellState(int x, int y) {
         n++;
     if(buf[(x + 1) % sx][(sy + y - 1) % sy])
         n++;
-    
+
     if(!buf[x][y] && n == 3)
         return true;
     if(buf[x][y] && (n == 2 || n == 3))
@@ -33,23 +33,23 @@ boolean cellState(int x, int y) {
 
 void tick() {
     stroke(grid ? 255 : 0);
-    
+
     for(int i = 0; i < sy; i++)
         for(int j = 0; j < sx; j++) {
             if(!pause)
                 arr[j][i] = cellState(j, i);
-            
+
             if(arr[j][i])
                 fill(255);
             else
                 fill(0);
             rect(j * step, i * step, step, step);
         }
-    
+
     for(int i = 0; i < sy; i++)
         for(int j = 0; j < sx; j++)
             buf[j][i] = arr[j][i];
-    
+
     stroke(255);
     point(mouseX, mouseY);
 }
@@ -68,15 +68,15 @@ void setup() {
     fullScreen();
     frameRate(30);
     noCursor();
-    
+
     stroke(0);
-    
+
     generate();
 }
 
 void draw() {
-    background(0);  
-    
+    background(0);
+
     tick();
 }
 

@@ -1,7 +1,7 @@
 void setup() {
   fullScreen(JAVA2D);
   colorMode(RGB, 1);
-  
+
   background(0);
 };
 
@@ -31,7 +31,7 @@ void draw() {
       float a = x;
       float b = y;
       int n = 0;
-      
+
       while (n < maxiterations)
       {
         float aa = a * a;
@@ -43,16 +43,16 @@ void draw() {
           break;
         n++;
       }
-      
+
       if (n == maxiterations)
         pixels[i+j*width] = color(0);
       else
         pixels[i+j*width] = color(sqrt(float(n) / maxiterations));
-      
+
       x += dx;
     }
     y += dy;
   }
-  
+
   updatePixels();
 };

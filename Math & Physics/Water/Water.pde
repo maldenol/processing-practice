@@ -14,10 +14,10 @@ int light, filling;
 void setup() {
     fullScreen(P3D);
     frameRate(fps);
-    
+
     colours = new int[][]{
-        {255, 255, 255,}, 
-        {255, 0, 0}, 
+        {255, 255, 255,},
+        {255, 0, 0},
         {255, 127, 0},
         {127, 127, 0},
         {127, 255, 0},
@@ -30,7 +30,7 @@ void setup() {
         {0, 255, 255},
         {255, 0, 255},
     };
-    
+
     amplitudeX = 0;
     amplitudeZ = 0;
     frequencyX = 0;
@@ -39,12 +39,12 @@ void setup() {
     offsetZ = 0;
     offsetSpeedX = 0;
     offsetSpeedZ = 0;
-    
+
     angleX = -PI / 6;
     angleY = 0;
-    
+
     colour = 0;
-    
+
     light = 0;
     filling = 0;
 }
@@ -54,7 +54,7 @@ void draw() {
     translate(width / 2, height / 2);
     rotateX(angleX);
     rotateY(angleY);
-    
+
     stroke(colours[colour / fps][0], colours[colour / fps][1], colours[colour / fps][2]);
     strokeWeight(1);
     if(light == 1)
@@ -71,10 +71,10 @@ void draw() {
         }
         endShape();
     }
-    
+
     showValues();
     changeValues();
-    
+
     offsetX += offsetSpeedX;
     if(offsetX > PI * 2)
         offsetX = -PI * 2;
@@ -98,11 +98,11 @@ void showValues() {
     values[3] = map(amplitudeZ, -PI, PI, -h, h);
     values[4] = map(frequencyZ, -PI, PI, -h, h);
     values[5] = map(offsetSpeedZ, -PI, PI, -h, h);
-    
+
     rotateY(-angleY);
     rotateX(-angleX);
     translate(-width / 2, -height / 2 - h * 2, -256);
-    
+
     stroke(255);
     strokeWeight(1);
     for(int i = 0; i < 6; i++) {

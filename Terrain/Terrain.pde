@@ -11,12 +11,12 @@ void setup()
   fullScreen(P3D);
   frameRate(fps);
   noCursor();
-  
+
   w = (int)(width / scale * borderMult);
   h = (int)(height / scale * borderMult);
-  
+
   terrain = new float[h][w];
-  
+
   stroke(255);
 }
 void draw()
@@ -25,16 +25,16 @@ void draw()
   float g = map(mouseY, 0, height - 1, 0, 32);
   float b = map(mouseY, 0, height - 1, 255, 0);
   background(r, g, b);
-  
+
   float rotX = map(mouseY, 0, height - 1, PI / 2.5, 0);
   float rotY = map(mouseX, 0, width - 1, -PI / 2.5, PI / 2.5);
-  
+
   translate(width / 2, height / 2);
   rotateY(rotY);
   rotateX(rotX);
-  
+
   translate(-width / 2 * borderMult, -height / 2 * borderMult, -limit);
-  
+
   yOff = totalOff;
   for(int y = 0; y < h; y++)
   {
@@ -47,7 +47,7 @@ void draw()
     yOff += smooth;
   }
   totalOff -= speedOff;
-  
+
   for(int y = 0; y < h - 1; y++)
   {
     lights();

@@ -17,48 +17,48 @@ float spell;
 float buttonTime = 0;
 
 class Particle {
-  
+
   private float x, y;
   private float mass;
   private float rad;
   private float friction = 0.999999;
   private PVector vect;
-  
+
   public Particle (float x, float y, float mass, float rad) {
     this.x = x;
     this.y = y;
     this.mass = mass;
     this.rad = rad;
   };
-  
+
   public Particle (float x, float y, float mass) {
-    this(x, y, mass, (float)cbrt(mass * antidensity * 3/4 / PI)); 
+    this(x, y, mass, (float)cbrt(mass * antidensity * 3/4 / PI));
   };
-  
+
   public float distance(float x, float y) {
     return sqrt(pow(x - this.x, 2) + pow(y - this.y, 2));
   };
-  
+
   public float distance(float xa, float ya, float xb, float yb) {
     return sqrt(pow(xa - xb, 2) + pow(ya - yb, 2));
   };
-  
+
   public float distance(Particle part) {
     return distance(part.getX(), part.getY());
   };
-  
+
   public float distance(Particle a, Particle b) {
     return distance(a.getX(), a.getY(), b.getX(), b.getY());
   };
-  
+
   public boolean detectCollision(Particle a, Particle b) {
     return distance(a, b) <= a.getRad() + b.getRad() && a != b;
   };
-  
+
   public boolean detectCollision(Particle part) {
     return detectCollision(this, part);
   };
-   
+
   public void raw_collide(Particle a, Particle b)
   {
     float massA = a.getMass();
@@ -69,10 +69,10 @@ class Particle {
       energy = map(distance(a, b), 0, a.getRad() + b.getRad(), 0, 1);
     float speedA = sqrt(energy * massB / pow(massA, 2));
     float speedB = sqrt(energy * massA / pow(massB, 2));
-    
+
     PVector vectA = new PVector(a.getX() - b.getX(), a.getY() - b.getY());
     PVector vectB = new PVector(b.getX() - a.getX(), b.getY() - a.getY());
-    
+
     /*
     PVector bVect = b.getVector();
     bVect.normalize();
@@ -85,7 +85,7 @@ class Particle {
     if(distance(a, b) < distance(b.getX(), b.getY(), a.getX() + aVect.x, a.getY() + aVect.y))
       vectB.mult(-1);
     */
-    
+
     vectA.normalize();
     vectB.normalize();
     vectA.mult(speedA);
@@ -93,39 +93,39 @@ class Particle {
     a.addVector(vectA);
     b.addVector(vectB);
   };
-  
+
   public void collide(Particle a, Particle b) {
     if(detectCollision(a, b)) raw_collide(a, b);
   };
-  
+
   public void collide(Particle part) {
     collide(this, part);
   };
-  
+
   public void addVector(PVector vect) {
     this.vect.add(vect);
   };
-  
+
   public void rub(float viscocity) {
     vect.mult(viscocity * friction);
   };
-  
+
   public void go() {
     x += vect.x;
     y += vect.y;
   };
-  
+
   public void go(float viscocity) {
     rub(viscocity);
     x += vect.x;
     y += vect.y;
   };
-  
+
   public void show() {
     stroke(255);
     ellipse(x, y, rad * 2, rad * 2);
   };
-  
+
   public void setX(float x) { this.x = x; };
   public void setY(float y) { this.y = y; };
   public void setPos(float x, float y) { this.setX(x); this.setY(y); };
@@ -133,7 +133,7 @@ class Particle {
   public void setVector(float x, float y) { this.vect = new PVector(x, y); };
   public void setFriction(float friction) { this.friction = friction; };
   public void setVector(PVector vect) { this.vect = vect; };
-  
+
   public float getX() { return this.x; };
   public float getY() { return this.y; };
   public float getMass() { return this.mass; };
@@ -146,9 +146,9 @@ void setup() {
   fullScreen();
   frameRate(fps);
   noCursor();
-  
+
   particles = new ArrayList<Particle>();
-  
+
   spell = width / 5;
   minMass = 10;
   maxMass = 350;
@@ -157,14 +157,14 @@ void setup() {
 
 void draw() {
   background(0);
-  
+
   keyboard();
-  
+
   int count = particles.size();
   for(int i = 0; i < count; i++)
     for(int j = i; j < count; j++)
       particles.get(i).collide(particles.get(j));
-  
+
   for(Particle part : particles)
   {
     wall(part);
@@ -173,7 +173,7 @@ void draw() {
     part.go(viscocity);
     part.show();
   }
-  
+
   stroke(255);
   ellipse(mouseX, mouseY, 5, 5);
 };

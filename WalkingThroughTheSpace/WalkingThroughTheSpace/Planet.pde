@@ -18,7 +18,7 @@ class Planet {
   private float specificHeatCapacity = 1;
   private float producedHeat;
   
-  private float aphelion, perihelion;  
+  private float aphelion, perihelion;
   private String master = "";
   
   private PVector vect = new PVector(0, 0);

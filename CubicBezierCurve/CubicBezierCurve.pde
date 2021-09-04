@@ -11,7 +11,7 @@ void draw() {
     background(0);
 
     drawPoints();
-    
+
     drawCurve();
 }
 

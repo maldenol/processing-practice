@@ -9,7 +9,7 @@ void setup()
 {
   fullScreen(JAVA2D);
   frameRate(fps);
-  
+
   background(0);
 };
 
@@ -19,7 +19,7 @@ float vx = 0, vy = 0;
 void draw()
 {
   background(0);
-  
+
   for(float y = vy; y < height + vy; y += size)
     for(float x = vx; x < width + vx; x += size)
     {
@@ -27,15 +27,15 @@ void draw()
       float r = map(h, 0, 1, 0, 255);
       float g = map(h, 0, 0.5, 0, 96) + map(h, 0.5, 1, 96, 0);
       float b = map(h, 0, 1, 255, 0);
- 
+
       stroke(r, g, b);
       fill(r, g, b);
       rect(x - vx, y - vy, x - vx + size - 1, y - vy + size - 1);
     }
-  
+
   vx -= sx;
   vy -= sy;
-  
+
   control();
 };
 
@@ -74,7 +74,7 @@ void control()
         break;
     }
   }
-  
+
   sx = map(mouseX, 0, width - 1, -35, 35);
   sy = map(mouseY, 0, height - 1, -35, 35);
 };
